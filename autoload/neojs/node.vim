@@ -1,6 +1,6 @@
 
 " Run current file with node
-function! nvimjs#node#run()
+function! neojs#node#run()
   let bufnr = expand('<bufnr>')
   let file = expand('%:p')
 

@@ -14,7 +14,7 @@
 "     var util = require('util');
 "     var nopt = require('nopt');
 "
-function nvimjs#require(command)
+function neojs#require(command)
   let reqlist = map(copy(split(a:command)), '"var " . v:val . " = require(''" . v:val . "'');"')
   if(exists('*tabular#TabularizeStrings'))
     call tabular#TabularizeStrings(reqlist, '=')
@@ -25,7 +25,7 @@ endfunction
 " Completion function for npm
 "
 " Delegates to `npm completion`.
-function nvimjs#npmcomplete(lead, line, pos)
+function neojs#npmcomplete(lead, line, pos)
   " code
   let cmd = 'COMP_CWORD="0" COMP_LINE="' . a:lead . '" COMP_POINT="' . a:pos . '" npm completion -- "' . a:line . '"'
   return system(cmd)

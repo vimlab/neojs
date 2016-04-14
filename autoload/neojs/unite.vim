@@ -1,6 +1,6 @@
 let s:leaderKey = exists('&mapleader') ? &mapleader : ','
 let s:localKey = exists('&maplocalleader') ? &maplocalleader : '<Space>'
-let s:delimiter = exists('g:nvimjs_unite_delimiter') ? g:nvimjs_unite_delimiter : ' ❯ '
+let s:delimiter = exists('g:neojs_unite_delimiter') ? g:neojs_unite_delimiter : ' ❯ '
 
 let s:padding = '                                         '
 let s:padding .= '                                        '
@@ -15,7 +15,7 @@ let s:padding .= '                                        '
 " - description: menu description
 " - mapping: mapping right padded
 " - candidates: a list of candidates
-function! nvimjs#unite#source_menu(name, description, mapping, candidates)
+function! neojs#unite#source_menu(name, description, mapping, candidates)
   let source = {}
   let source.name = a:name
   let source.description = a:description
@@ -31,12 +31,12 @@ endfunction
 " - name
 " - mapping
 " - command
-function! nvimjs#unite#create_candidate(name, mapping, command)
+function! neojs#unite#create_candidate(name, mapping, command)
   return [s:delimiter . a:name . s:padding[len(a:name) + 3:] . s:leaderKey . a:mapping, a:command]
 endfunction
 
 
-function! nvimjs#unite#candidates(unite_menu, empty_list)
+function! neojs#unite#candidates(unite_menu, empty_list)
   let l:empty_list = a:empty_list
 
   if empty(a:unite_menu)
@@ -47,7 +47,7 @@ function! nvimjs#unite#candidates(unite_menu, empty_list)
     if type(entry) == 1
       let entry = substitute(entry, '\V<Leader>\c', '\1'.s:leaderKey, 'g')
     elseif type(entry) == 3
-      let entry = nvimjs#unite#candidates(entry, [])
+      let entry = neojs#unite#candidates(entry, [])
     endif
 
     call add(l:empty_list, entry)

@@ -1,64 +1,74 @@
 <h1 align="center">
-	<img width="360" src="./nvim.js.png" alt="nvim.js">
+	<img width="360" src="./resources/neojs.png" alt="neojs">
 	<br>
 	<br>
 </h1>
+
+---
 
 > Lightweight bag of utilities for NeoVim JavaScript developers
 
 ---
 
-Set of plugins and sensible defaults for JavaScript development with [neovim][]
-
-- Takes advantage of Neovim's async features
-- Sensible defaults for linting JSON & JS files
-- Shortcuts commands to interact with npm
+- A carefully crafted set of [plugins](./docs/plugins.md) for JavaScript development with [nvim][]
+- [Sensible][] defaults and Syntax files for ES5 / ES6
+- Awesome JS completion using [deoplete][] and [Tern][]
+- Super fast asynchronous linting with [neomake][]
+- Shortcut commands to interact with npm & node
 - Ability to hit `Ctrl+R` to launch current file with node
-- A bunch of UltiSnips snippets
-- A good amount of templates (init new buffers with arbitrary content)
 - Wrappers to popular JavaScript task runners like [Grunt] or [Gulp]
-- Same goodies for popular JavaScript test runner such as [Mocha] or [Ava]
-
-On regular vim, plugins specifically designed to work with nvim are disabled.
-Further updates will provide fallbacks to VIM compatible solutions (like
-switching out Neomake to Syntasic)
+- Same goodies for popular JavaScript test runners such as [Mocha] or [Ava]
+- A good amount of [UltiSnips][] snippets for ES6 & React
+- A bunch of templates (init new buffers with arbitrary content)
 
 ## Install
 
+Install [vim-plug][] and put this line into your `.vimrc`
+
 ```
-Plug 'mklabs/nvim.js', { 'do': 'npm install' }
+Plug 'mklabs/neojs'
 ```
 
-nvim.js assumes [vim-plug] is used as a package manager.
+On first launch, it will install the list of plugins defined in [docs/plugins.md](./docs/plugins.md).
 
-The file `plugin/plugins.vim` uses vim-plug API to dynamically load the following plugins:
+Then, follow the following steps:
 
-- **[vim-sensible][]** A universal set of defaults that (hopefully) everyone can agree on.
-- **[outline][]** Outline is used to provide fuzzy finder like feature for
-  various source
-- **[neomake][]** Neovim's Syntasic equivalent. Asynchronous linting using Neovim's job-control functionality
-- **[deoplete][]** Provides an asynchronous keyword completion system in the current buffer
-- **[ternjs][]** [Tern][] based JavaScript editing support
-- **[deoplete-ternjs][]** deoplete source for javascript using [Tern][]
-- **[vim-javascript][]** JavaScript bundle for vim, this bundle provides syntax and indent plugins
-- **[yajs.vim][]** Yet Another JavaScript Syntax file
-- **[es.next.syntax.vim][]** Syntax file is for ES7 and future syntax
-- **[mdn.vim][]**  Query http://mdn.io and see the Markdown result in a vertical buffer
-- **[jscs.vim][]** `jscs -x` command: `:Format` can take range or operate on the whole file
-- **[split-term.vim][]** Utilites around neovim's `:terminal`
-- **[vim-node][]** Tools to make Vim superb for developing with Node
-- **[node-host][]** [Neovim's remote
-  plugin](https://neovim.io/doc/user/remote_plugin.html) feature is kinda cool.
-  It is now possible to author neovim plugins using JavaScript and node only.
-  See [this page](./docs/remote-plugin.md) for more informations on how to
-  create your own node plugin, or browse
-  [mdown.vim](https://github.com/vimlab/mdown.vim) code which is an experiment
-  on using neovim's and [node-host][] remote API.
+1. Run `:PlugStatus` to check your install and list of bundles
+2. Run the `:UpdateRemotePlugins` command
+3. Close vim and reopen again
+4. Run `:Unite menu` or hit `<space><space>` to open the top Unite menu
+5. Profit
+
+## Plugins
+
+The file `plugin/plugins.vim` uses vim-plug's API to dynamically load the plugins
+listed in [docs/plugins.md](./docs/plugins.md)
 
 When necessary, configuration for a given plugin can be found in
-`config/<plugin>.vim` (ex. [config/neomake.vim](./config/neomake.vim)).
+`plugin/<plugin>.vim` (ex. [plugin/neomake.vim](./plugin/neomake.vim)).
 
-## Node
+## Unite Menus
+
+[Unite][] is an awesome plugin for advanced VIM users. It offers a rich API to
+compose and design UI, in a simple way.
+
+[oh-my-vim] and [joedicastro's
+dotfiles](https://github.com/joedicastro/dotfiles/tree/master/vim) had the
+briliant idea of using Unite to define a list of Menus with available commands
+and mappings, which inspired the following:
+
+- lint - Linter with neomake
+- node - Node & npm menu
+- task - Task helpers (Grunt & Gulp)
+- tern - Tern commands (https://github.com/ternjs/tern_for_vim)
+- test - Test helpers (Mocha & Ava)
+
+**Ex.**
+<img src="./resources/menus.gif" alt="Unite menus" style="max-width:100%;">
+
+---
+
+### Node
 
 [vim-node][] already provides excellent support for node developement.
 
@@ -69,11 +79,21 @@ When necessary, configuration for a given plugin can be found in
 
 - `Ctrl+R` is the default mapping to run `:NodeRun`
 
-- `:Node <args>` opens a 2-lines horizontal buffer with node prompt.
+- `:Node <args>` opens a 2-lines horizontal buffer with node prompt
 
-## Snippets
+- `:Require <args>` helper to quickly add new require statements
 
-A list of [UltiSnips][] snippets:
+### npm
+
+- `:Npm <command> [options]` Wrapper on top of `npm`.
+
+- `:Npmi packages...` alias for `:Npm install <args> --save`, except that it opens
+  an horizontal buffer with only two lines displayed.
+
+### Snippets
+
+A list of [UltiSnips][] snippets can be found in the [snippets](./snippets)
+directory.
 
 - Common snippets like `f)`, `()()` to create IIFE, `#!` to expand node
   shebang, `ok` for `Object.keys()`, `e`, `l` to expand `console.`
@@ -84,7 +104,7 @@ A list of [UltiSnips][] snippets:
 
 Run `:UltiSnipsEdit` to edit them or add additional ones.
 
-## Templates
+### Templates
 
 [t.vim][] is a small "template" or scaffolding tool.
 
@@ -103,33 +123,20 @@ Use `<language>.<ext>` for a generic template to use for a particular filetype.
 Any other name can be used for a more specific template. `package.json` is a
 good example.
 
-## Grunt / Gulp / npm / mocha / ..
-
-
-Grunt, Gulp, npm, mocha, ava all have their respective vim commands, similar to
-what [Fugitive][] does for Git.
-
-- `:Grunt <task>` to run `<task>` with Grunt. Assumes `grunt-cli` is installed
-  and that the `grunt` command is available in your `$PATH`
-
-- `:Gulp <task>` same as `:Grunt`
-
-- `:Npm <command> [options]` Wrapper on top of `npm`.
-
-- `:Npmi packages...` alias for `:Npm install <args> --save`, except that it opens
-  an horizontal buffer with only two lines displayed.
-
-- `:Mocha args...` run `mocha` and outputs the result. Mocha should be installed
-  and available in `node_modules` (the command uses `node_modules/.bin/mocha`)
-
-- `:Ava args...` same as `:Mocha`
 
 ## Configuration
 
-No configuration! That's simpler like it.
+- `g:neojs_bundles` Path to vim-plug plugin directories (`~/.vim/bundles`)
+- `g:neojs_unite_delimiter` Change the prefix value used in Unite Menus
+- `g:neojs_pluginfile` Path to the file listing plugins to install and load
+  (`~/.vim/bundles/neojs/docs/plugins.md`)
+
+---
+
+:heart:
 
 [vim-plug]: https://github.com/junegunn/vim-plug
-[Outline]: https://github.com/Shougo/unite.vim
+[Unite]: https://github.com/Shougo/unite.vim
 [UltiSnips]: https://github.com/SirVer/ultisnips
 [Neomake]: https://github.com/benekastah/neomake
 [deoplete]: https://github.com/Shougo/deoplete.nvim
@@ -147,8 +154,11 @@ No configuration! That's simpler like it.
 [node-host]: https://github.com/neovim/node-host
 [Fugitive]: https://github.com/tpope/vim-fugitive
 [neovim]: https://github.com/neovim/neovim
+[nvim]: https://github.com/neovim/neovim
 [ava]: https://github.com/sindresorhus/ava
 [Mocha]: https://mochajs.org/
 [Grunt]: http://gruntjs.com/
 [Gulp]: http://gulpjs.com/
 [vim-sensible]: https://github.com/tpope/vim-sensible
+[Sensible]: https://github.com/tpope/vim-sensible
+[oh-my-vim]: https://github.com/liangxianzhe/oh-my-vim

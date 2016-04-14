@@ -1,15 +1,23 @@
-Plug 'tpope/vim-sensible'
-Plug 'benekastah/neomake'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/deoplete.nvim'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-Plug 'sirver/ultisnips'
-Plug 'neovim/node-host', { 'do': 'npm install' }
-Plug 'moll/vim-node'
-Plug 'othree/yajs.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'nono/vim-handlebars'
-Plug 'honza/vim-snippets'
+let g:neojs_bundles = exists('g:neojs_bundles') ? g:neojs_bundles : '~/.vim/bundles'
 
-Plug 'vimlab/split-term.vim'
+let g:neojs_pluginfile = exists('g:neojs_pluginfile') ? g:neojs_pluginfile : g:neojs_bundles . '/neojs/docs/plugins.md'
+let g:neojs_pluginfile = expand(g:neojs_pluginfile)
+
+let s:installedfile = fnamemodify(g:neojs_pluginfile, ':h:h') . '/installed'
+let s:installed = filereadable(s:installedfile)
+
+if !s:installed
+  echo 'Installing Bundles, please ignore key map error messages'
+  echo ''
+
+  let names = neojs#plug#init()
+  call call('plug#load', names)
+
+  autocmd VimEnter * PlugInstall
+  call system('touch ' . s:installedfile)
+else
+  let names = neojs#plug#init()
+  call call('plug#load', names)
+endif
+
+command! -complete=file -nargs=* PlugAdd  call neojs#plug#add(<q-args>)<CR>
