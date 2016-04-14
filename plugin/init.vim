@@ -15,7 +15,7 @@ autocmd! BufWritePost *.json Neomake
 command! -complete=file -nargs=+ Require call nvimjs#require(<q-args>)
 
 " ### Npm install qs
-command! -complete=custom,s:complete -nargs=* Npm :Term npm <q-args>
+command! -complete=custom,nvimjs#npmcomplete -nargs=* Npm :Term npm <q-args>
 
 " ### Npmi qs request
 command! -complete=file -nargs=* Npmi :3Term npm install <args> --save

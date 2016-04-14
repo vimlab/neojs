@@ -25,7 +25,7 @@ endfunction
 " Completion function for npm
 "
 " Delegates to `npm completion`.
-function! s:complete(lead, line, pos)
+function nvimjs#npmcomplete(lead, line, pos)
   " code
   let cmd = 'COMP_CWORD="0" COMP_LINE="' . a:lead . '" COMP_POINT="' . a:pos . '" npm completion -- "' . a:line . '"'
   return system(cmd)
