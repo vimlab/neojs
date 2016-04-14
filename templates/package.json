@@ -1,0 +1,22 @@
+{
+  "name": "{{ name }}",
+  "author": "{{ ghUser }}",
+  "version": "0.1.0",
+  "description": "{{ description }}",
+  "bin": "bin/{{ name }}",
+  "repository": "github:{{ ghName }}/{{ name }}",
+  "license": "ISC",
+  "scripts": {
+    "test": "mocha && npm run lint",
+    "lint": "eslint . && jscs ."
+  },
+  "devDependencies": {
+    "eslint": "^2.7.0",
+    "jscs": "^2.11.0",
+    "mocha": "^2.4.5"
+  },
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "minimist": "^1.2.0"
+  }
+}
