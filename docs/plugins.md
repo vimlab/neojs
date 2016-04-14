@@ -3,8 +3,7 @@
 The file `plugin/plugins.vim` uses vim-plug API to dynamically load the following plugins:
 
 - **[vim-sensible][]** A universal set of defaults that (hopefully) everyone can agree on.
-- **[outline][]** Outline is used to provide fuzzy finder like feature for
-  various source
+- **[unite][]** Unite is used to provide fuzzy finder like feature for various source
 - **[neomake][]** Neovim's Syntasic equivalent. Asynchronous linting using Neovim's job-control functionality
 - **[deoplete][]** Provides an asynchronous keyword completion system in the current buffer
 - **[ternjs][]** Tern based JavaScript editing support
@@ -25,7 +24,7 @@ The file `plugin/plugins.vim` uses vim-plug API to dynamically load the followin
   on using neovim's and [node-host][] remote API.
 
 [vim-sensible]: https://github.com/tpope/vim-sensible
-[Outline]: https://github.com/Shougo/unite.vim
+[Unite]: https://github.com/Shougo/unite.vim
 [UltiSnips]: https://github.com/SirVer/ultisnips
 [Neomake]: https://github.com/benekastah/neomake
 [deoplete]: https://github.com/Shougo/deoplete.nvim

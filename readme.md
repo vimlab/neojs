@@ -133,8 +133,6 @@ good example.
 
 ---
 
-:heart:
-
 [vim-plug]: https://github.com/junegunn/vim-plug
 [Unite]: https://github.com/Shougo/unite.vim
 [UltiSnips]: https://github.com/SirVer/ultisnips
