@@ -1,4 +1,6 @@
-let s:leaderKey = exists("&mapleader")?&mapleader:','
+let s:leaderKey = exists('&mapleader') ? &mapleader : ','
+let s:localKey = exists('&maplocalleader') ? &maplocalleader : '<Space>'
+let s:delimiter = exists('g:nvimjs_unite_delimiter') ? g:nvimjs_unite_delimiter : ' ❯ '
 
 let s:padding = '                                         '
 let s:padding .= '                                        '
@@ -7,7 +9,33 @@ let s:padding .= '                                        '
 
 " Unite integration menu
 
-" Create a new menu
+" Creates a new source
+"
+" - name: menu name
+" - description: menu description
+" - mapping: mapping right padded
+" - candidates: a list of candidates
+function! nvimjs#unite#source_menu(name, description, mapping, candidates)
+  let source = {}
+  let source.name = a:name
+  let source.description = a:description
+  let source.description .= s:padding[len(a:description):]
+  let source.description .= s:leaderKey . a:mapping
+  let source.command_candidates = copy(a:candidates)
+
+  return source
+endfunction
+
+" Creates a new candidate for a menu
+"
+" - name
+" - mapping
+" - command
+function! nvimjs#unite#create_candidate(name, mapping, command)
+  return [s:delimiter . a:name . s:padding[len(a:name) + 3:] . s:leaderKey . a:mapping, a:command]
+endfunction
+
+
 function! nvimjs#unite#candidates(unite_menu, empty_list)
   let l:empty_list = a:empty_list
 
@@ -26,30 +54,4 @@ function! nvimjs#unite#candidates(unite_menu, empty_list)
   endfor
 
   return l:empty_list
-endfunction
-
-" Creates a new source
-"
-" - name: menu name
-" - description: menu description
-" - mapping: mapping right padded
-" - candidates: a list of candidates
-function! nvimjs#unite#source_menu(name, description, mapping, candidates)
-  let source = {}
-  let source.name = a:name
-  let source.description = a:description
-  let source.description .= s:padding[len(a:description):]
-  let source.description .= a:mapping
-  let source.command_candidates = copy(a:candidates)
-
-  return source
-endfunction
-
-" Creates a new candidate for a menu
-"
-" - name
-" - mapping
-" - command
-function! nvimjs#unite#create_candidate(name, mapping, command)
-  return ['▷ ' . a:name . s:padding[len(a:name) + 3:] . '<Leader>' . a:mapping, a:command]
 endfunction
