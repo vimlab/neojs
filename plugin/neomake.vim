@@ -2,7 +2,15 @@ let g:neojs_bundles = exists('g:neojs_bundles') ? g:neojs_bundles : '~/.vim/bund
 let g:unite_source_menu_menus = exists('g:unite_source_menu_menus') ? g:unite_source_menu_menus : {}
 
 " ### Default makers
-let g:neomake_javascript_enabled_makers = ['eslint', 'jscs']
+" let g:neomake_javascript_enabled_makers = ['eslint', 'jscs']
+
+
+let g:neomake_javascript_xo_maker = {
+\ 'args': ['--reporter=compact'],
+\ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
+\ }
+
+let g:neomake_javascript_enabled_makers = ['xo']
 let g:neomake_json_enabled_makers = ['jsonlint']
 
 " Run neomake on save for js/json files
@@ -13,10 +21,6 @@ autocmd! BufWritePost *.json Neomake
 function! s:dirpath(val)
   return fnamemodify(a:val, ':t:r')
 endfunction
-
-" let s:makersDir = expand(g:neojs_bundles . '/neomake/autoload/neomake/makers/ft')
-" let s:makers = split(glob(s:makersDir . '/*.vim'), '')
-" let s:makers = map(s:makers, 's:dirpath(v:val)')
 
 let s:candidates = []
 let s:filetypes = ['javascript', 'json']
