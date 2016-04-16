@@ -30,8 +30,6 @@ The file `plugin/plugins.vim` uses vim-plug API to dynamically load the followin
 [deoplete]: https://github.com/Shougo/deoplete.nvim
 [ternjs]: https://github.com/ternjs/tern_for_vim
 [deoplete-ternjs]: https://github.com/carlitux/deoplete-ternjs
-[vim-javascript]: https://github.com/pangloss/vim-javascript
-[yajs.vim]: https://github.com/othree/yajs.vim
 [es.next.syntax.vim]: https://github.com/othree/es.next.syntax.vim
 [mdn.vim]: https://github.com/vimlab/mdn.vim
 [jscs.vim]: https://github.com/vimlab/jscs.vim
