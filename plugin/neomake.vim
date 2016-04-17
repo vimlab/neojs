@@ -4,13 +4,12 @@ let g:unite_source_menu_menus = exists('g:unite_source_menu_menus') ? g:unite_so
 " ### Default makers
 " let g:neomake_javascript_enabled_makers = ['eslint', 'jscs']
 
-
-let g:neomake_javascript_xo_maker = {
-\ 'args': ['--reporter=compact'],
-\ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
+let g:neomake_javascript_eslint_maker = {
+\ 'args': ['--env', 'es6', '-f', 'compact'],
+\ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,%W%f: line %l\, col %c\, Warning - %m'
 \ }
 
-let g:neomake_javascript_enabled_makers = ['xo']
+let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_json_enabled_makers = ['jsonlint']
 
 " Run neomake on save for js/json files
