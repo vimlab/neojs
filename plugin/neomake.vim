@@ -1,8 +1,4 @@
-let g:neojs_bundles = exists('g:neojs_bundles') ? g:neojs_bundles : '~/.vim/bundles'
 let g:unite_source_menu_menus = exists('g:unite_source_menu_menus') ? g:unite_source_menu_menus : {}
-
-" ### Default makers
-" let g:neomake_javascript_enabled_makers = ['eslint', 'jscs']
 
 let g:neomake_javascript_eslint_maker = {
 \ 'args': ['--env', 'es6', '-f', 'compact'],
