@@ -29,13 +29,10 @@ Install [vim-plug][] and put this line into your `.vimrc`
 Plug 'mklabs/neojs'
 ```
 
-On first launch, it will install the list of plugins defined in [docs/plugins.md](./docs/plugins.md).
+On first launch, it will install the list of plugins defined in [plugin/plugins.md](./plugin/plugins.vim).
 
-Then, follow the following steps:
-
-1. Run `:PlugStatus` to check your install and list of bundles
-2. Run the `:UpdateRemotePlugins` command
-3. Close vim and reopen again
+1. Close vim and reopen
+2. Run `:PlugStatus` to check your install and list of bundles
 4. Run `:Unite menu` or hit `<space><space>` to open the top Unite menu
 5. Profit
 
