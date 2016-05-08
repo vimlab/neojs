@@ -16,7 +16,7 @@ command! -complete=file -count=2 -nargs=* Node :<count>Term node
 command! -nargs=* NodeRun call neojs#node#run()
 
 " ### Ctrl+R to run the curent file with node
-au BufEnter *.js nmap <C-r> :call neojs#node#run<CR>
+" au BufEnter *.js nmap <C-r> :call neojs#node#run<CR>
 
 let s:candidates = []
 
