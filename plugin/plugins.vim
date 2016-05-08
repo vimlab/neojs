@@ -5,9 +5,9 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'vimlab/split-term.vim'
+Plug 'benekastah/neomake',        { 'do': 'npm install eslint jsonlint' }
 
 " On demand loaded
-Plug 'benekastah/neomake',        { 'for': 'javascript, json', 'do': 'npm install eslint jsonlint' }
 Plug 'carlitux/deoplete-ternjs',  { 'for': 'javascript', 'do': 'npm install -g tern' }
 Plug 'ternjs/tern_for_vim',       { 'for': 'javascript', 'do': 'npm install' }
 Plug 'neovim/node-host',          { 'for': 'javascript', 'do': 'npm install' }
