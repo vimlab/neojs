@@ -26,7 +26,7 @@
 Install [vim-plug][] and put this line into your `.vimrc`
 
 ```
-Plug 'mklabs/neojs'
+Plug 'vimlab/neojs'
 ```
 
 On first launch, it will install the list of plugins defined in [plugin/plugins.md](./plugin/plugins.vim).
